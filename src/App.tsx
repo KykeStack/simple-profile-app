@@ -1,9 +1,10 @@
 import type { Component } from 'solid-js';
-import Countries from './components/Countries'
+import Profile from './profile/Profile';
+
 
 const App: Component = () => {
   return (
-    <Countries/>
+    <Profile/>
   );
 };
 
