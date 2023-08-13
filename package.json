@@ -20,6 +20,7 @@
     "vite-plugin-solid": "^2.7.0"
   },
   "dependencies": {
+    "@solidjs/router": "^0.8.3",
     "@supabase/supabase-js": "^2.32.0",
     "autoprefixer": "^10.4.14",
     "solid-js": "^1.7.6"

@@ -1,16 +1,11 @@
 import { Component } from "solid-js";
-import { buttonProps } from "../global/types";
+import { A } from "@solidjs/router"; 
 
-
-const Button: Component<buttonProps> = (props) => {
-  const handleChildClick = () => {
-    props.onCallParentFunction();
-  };
-
-  return (
-    <button 
-        onClick={props.onCallParentFunction ? handleChildClick : null}
-        type="button" 
+const LinkButton: Component<{href: string, textContent: string}> = (props) => {
+  
+  return(
+    <A 
+        href={props.href} 
         class="
             text-white 
             bg-blue-700 
@@ -28,10 +23,10 @@ const Button: Component<buttonProps> = (props) => {
             dark:hover:bg-blue-700 
             focus:outline-none 
             dark:focus:ring-blue-800"
-            >
-                {props.buttonTetxt}
-            </button>
+        >
+        {props.textContent}
+    </A>
   );
 };
 
-export default Button;
+export default LinkButton;

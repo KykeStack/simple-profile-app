@@ -3,6 +3,11 @@ import './index.css';
 import { render } from 'solid-js/web';
 
 import App from './App';
+import { GlobalContextProvider } from './global/ContextManager';
+import { Router, Route, Routes } from "@solidjs/router";
+import { lazy } from "solid-js";
+
+const SignInForm = lazy(() => import("./signin-form/SignInForm"));
 
 const root = document.getElementById('root');
 
@@ -12,4 +17,13 @@ if (import.meta.env.DEV && !(root instanceof HTMLElement)) {
   );
 }
 
-render(() => <App />, root!);
+render(() =>(
+  <Router> 
+      <GlobalContextProvider>
+        <Routes>
+          <Route path="/" component={App} /> 
+          <Route path="/signin" component={SignInForm} /> 
+        </Routes>
+      </GlobalContextProvider>
+  </Router>
+), root!);

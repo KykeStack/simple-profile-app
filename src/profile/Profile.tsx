@@ -1,52 +1,10 @@
 import {type Component, Show, createSignal, onMount } from "solid-js";
-import Button from "../components/Button";
 import supabaseClient from "../global/SupabaseClient";
-import ProfileHeader from "./components/ProfileHeader";
-
-
 
 const Profile: Component<{}> = (props) => {
-    const [userLogIn, setuserLetlogIn] = createSignal<boolean>(false);
-
-    const googleSignIn = async () => {
-        const { data, error } = await supabaseClient().auth.signInWithOAuth({
-            provider: 'google',
-            options: {
-              queryParams: {
-                access_type: 'offline',
-                prompt: 'consent',
-              },
-            },
-          })
-        if (data) setuserLetlogIn(true);
-        if (error) setuserLetlogIn(false);
-    };
-
-    onMount(() => {
-        supabaseClient().auth.onAuthStateChange((_event, session) => {
-        if (session?.user) {
-            setuserLetlogIn(true);
-        } else {
-            setuserLetlogIn(false);
-        }
-    })});
-    
   return(
     <div>
-        <ProfileHeader/>
         <section id="whenSignedOut">
-            <Show when={userLogIn() === false} fallback={
-                <Button
-                buttonTetxt="Sign Out"
-                onCallParentFunction={console.log}
-                />
-            }> 
-                <Button
-                    buttonTetxt="Sign In with Google"
-                    onCallParentFunction={googleSignIn}
-                />
-            </Show>
-
         </section>
 
         <section id="whenSignedIn" hidden={true}>
