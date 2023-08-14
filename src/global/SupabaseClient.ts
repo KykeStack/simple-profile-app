@@ -5,6 +5,7 @@ const supabase = createClient(
     import.meta.env.VITE_SUPABASE_TOKEN
   );
 
+
 function supabaseClient() {
     return supabase
 }

@@ -7,7 +7,11 @@ import { GlobalContextProvider } from './global/ContextManager';
 import { Router, Route, Routes } from "@solidjs/router";
 import { lazy } from "solid-js";
 
-const SignInForm = lazy(() => import("./signin-form/SignInForm"));
+const SignOut = lazy(() => import('./components/SignOut'));
+const SignInForm = lazy(() => import('./signin-form/SignInForm'));
+const SignUpForm = lazy(() => import('./signup-form/SignUpForm'));
+const Profile = lazy(() => import('./profile/Profile'));
+
 
 const root = document.getElementById('root');
 
@@ -23,6 +27,9 @@ render(() =>(
         <Routes>
           <Route path="/" component={App} /> 
           <Route path="/signin" component={SignInForm} /> 
+          <Route path="/signup" component={SignUpForm} /> 
+          <Route path="/signout" component={SignOut} /> 
+          <Route path="/profile" component={Profile} /> 
         </Routes>
       </GlobalContextProvider>
   </Router>

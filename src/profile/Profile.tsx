@@ -4,9 +4,6 @@ import supabaseClient from "../global/SupabaseClient";
 const Profile: Component<{}> = (props) => {
   return(
     <div>
-        <section id="whenSignedOut">
-        </section>
-
         <section id="whenSignedIn" hidden={true}>
             <div id="userDetails"></div>
             <button id="signOutBtn" class="btn btn-primary">Sign Out</button>

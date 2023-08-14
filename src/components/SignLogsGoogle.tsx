@@ -1,8 +1,8 @@
 import {type Component } from "solid-js";
-import SocialAuthButton from "../../components/SocialAuthButton";
-import GoggleSvg from "../../assets/GoggleSvg";
-import supabaseClient from "../../global/SupabaseClient";
-import { useGlobalContext } from "../../global/ContextManager";
+import SocialAuthButton from "./SocialAuthButton";
+import GoggleSvg from "../assets/GoggleSvg";
+import supabaseClient from "../global/SupabaseClient";
+import { useGlobalContext } from "../global/ContextManager";
 
 const SignLogsGoogle: Component<{}> = (props) => {
   const { setUserLogInStatus } = useGlobalContext();
@@ -17,7 +17,10 @@ const SignLogsGoogle: Component<{}> = (props) => {
             },
           },
         })
-      if (data) setUserLogInStatus(true);
+      if (data) {
+        setUserLogInStatus(true);
+        console.log(data);
+      }
       if (error){
           console.log('Error signing out:', error.message);
       } 
