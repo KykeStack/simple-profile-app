@@ -1,21 +1,18 @@
 import { type Component, Show } from "solid-js";
-import { CallParentFuntion } from "../global/types";
+import { SocialAuthProps } from "../global/types";
 
-const SocialAuthButton: Component<{
-        svg: Component, 
-        buttonText: string
-        additionaTex?: string, 
-        onCallParentFunction?: CallParentFuntion
-    }> = (props) => {
+const SocialAuthButton: Component<SocialAuthProps> = (props) => {
       const handleChildClick = () => {
-        props.onCallParentFunction();
+        if (props.onCallParentFunction !== undefined) {
+            props.onCallParentFunction();
+        }
       };
   return (
     <>
       <a 
         href="#" 
         class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white"
-        onClick={props.onCallParentFunction ? handleChildClick : null}
+        onClick={handleChildClick}
         >
           {<props.svg/>}
           <span class="flex-1 ml-3 whitespace-nowrap">{props.buttonText}</span>

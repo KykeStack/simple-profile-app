@@ -4,18 +4,22 @@ import { useGlobalContext } from './global/ContextManager';
 import MainPage from './main-page/MainPage';
 
 const App: Component = () => {
-  const { setUserLogInStatus, getCurrentUser} = useGlobalContext();
-
+  const { setUserLogInStatus, getCurrentUser , setFetchUser, fetchUser} = useGlobalContext();
+  
   onMount(() => {
-    getCurrentUser();
-    supabaseClient().auth.onAuthStateChange((_event, session) => {
-    if (session?.user) {
-        setUserLogInStatus(true);
-    } else {
-        setUserLogInStatus(false);
-    }});
+    if (fetchUser() === false) {
+      getCurrentUser();
+      supabaseClient().auth.onAuthStateChange((_event, session) => {
+      if (session?.user) {
+          setUserLogInStatus(true);
+      } else {
+          setUserLogInStatus(false);
+      }});
+      console.log(fetchUser());
+      setFetchUser(true);
+      console.log(fetchUser());
+    }
   });
-
   return (
     <MainPage/>
   );

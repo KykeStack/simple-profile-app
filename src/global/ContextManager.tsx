@@ -5,6 +5,8 @@ import { Session, User } from "@supabase/supabase-js";
 interface ContextProps {
     userLogInStatus: Accessor<boolean>;
     setUserLogInStatus: Setter<boolean>;
+    fetchUser: Accessor<boolean>;
+    setFetchUser: Setter<boolean>;
     signOut: () => Promise<void>;
     getCurrentUser: () => Promise<User | null>;
     currentUser: Accessor<User>;
@@ -30,6 +32,7 @@ export function GlobalContextProvider(props) {
     const [userLogInStatus, setUserLogInStatus] = createSignal<boolean>(false);
     const [currentUser, setCurrentUser] = createSignal<User>();
     const [count, setCount] = createSignal(0);
+    const [fetchUser, setFetchUser] = createSignal(false);
     
     async function signOut() {
       const { error } = await supabaseClient().auth.signOut()
@@ -38,6 +41,7 @@ export function GlobalContextProvider(props) {
         console.log('Error signing out:', error.message)
       } else {
         setUserLogInStatus(false);
+        setFetchUser(false);
       }
     }
     
@@ -78,6 +82,7 @@ export function GlobalContextProvider(props) {
         console.log(error);
         return;
       }
+      console.log("🚀 ~ file: ContextManager.tsx:82 ~ signUpUser ~ data:", data)
       return data;
     }
     
@@ -92,7 +97,9 @@ export function GlobalContextProvider(props) {
         count,
         setCount,
         signInWithEmail,
-        signUpUser
+        signUpUser,
+        setFetchUser,
+        fetchUser
       }}>
         {props.children}
       </GlobalContext.Provider>

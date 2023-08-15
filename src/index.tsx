@@ -3,9 +3,10 @@ import './index.css';
 import { render } from 'solid-js/web';
 
 import App from './App';
-import { GlobalContextProvider } from './global/ContextManager';
+import { GlobalContextProvider, useGlobalContext } from './global/ContextManager';
 import { Router, Route, Routes } from "@solidjs/router";
-import { lazy } from "solid-js";
+import { lazy, onMount } from "solid-js";
+import supabaseClient from './global/SupabaseClient';
 
 const SignOut = lazy(() => import('./components/SignOut'));
 const SignInForm = lazy(() => import('./signin-form/SignInForm'));
@@ -20,6 +21,7 @@ if (import.meta.env.DEV && !(root instanceof HTMLElement)) {
     'Root element not found. Did you forget to add it to your index.html? Or maybe the id attribute got misspelled?',
   );
 }
+
 
 render(() =>(
   <Router> 

@@ -15,3 +15,9 @@ export const deconstructForm = (formElement: HTMLFormElement) => {
     });
     return formContent
 }
+
+export const handleChildClick = (props: {[key: string]: any }) => {
+    if (props.onCallParentFunction !== undefined) {
+        props.onCallParentFunction();
+    }
+  };
