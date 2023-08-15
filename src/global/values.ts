@@ -1,4 +1,5 @@
 export const HOME_PAGE = "/"
+export const SIGNUP_SUCCESS_PAGE = "/signup-success"
 
 export const NavbarButton = {
     home : {text: "Home", current: true, route : "/"},
