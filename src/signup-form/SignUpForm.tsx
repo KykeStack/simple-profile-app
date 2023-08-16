@@ -2,7 +2,6 @@ import { createSignal, type Component, Show } from "solid-js";
 import { useGlobalContext } from "../global/ContextManager";
 import SignLogsGoogle from "../components/SignLogsGoogle";
 import { deconstructForm } from "../global/functions";
-import { SIGNUP_SUCCESS_PAGE } from "../global/values";
 import SignupSucces from "./SignupSucces";
 
 interface signInForm {
