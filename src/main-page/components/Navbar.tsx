@@ -3,10 +3,10 @@ import { A } from "@solidjs/router";
 import { useGlobalContext } from "../../global/ContextManager";
 import LinkButton from "../../components/LinkButton";
 import Avatar from "../../components/Avatar";
-import { NavbarButton, currentRouteClass, optionRouteClass } from "../../global/values";
+import { DefaultProfileImage, NavbarButton, currentRouteClass, optionRouteClass } from "../../global/values";
 
 const Navbar: Component<{}> = (props) => {
-    const { userLogInStatus } = useGlobalContext();
+    const { userLogInStatus, currentUser } = useGlobalContext();
   return(
     <nav class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 z-0">
@@ -21,9 +21,9 @@ const Navbar: Component<{}> = (props) => {
                     when={!userLogInStatus()}
                     fallback={
                         <Avatar 
-                        imageUrl="https://flowbite.com/docs/images/logo.svg"
-                        userName="Enrique Orellana"
-                        userEmail="enrrique@gmail.com"
+                        imageUrl={currentUser().user_metadata.avatar_url ? currentUser().user_metadata.avatar_url : DefaultProfileImage}
+                        userName={currentUser().user_metadata.name}
+                        userEmail={currentUser().email}
                         />
                     }>
                         <>
